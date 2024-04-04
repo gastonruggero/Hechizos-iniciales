@@ -18,7 +18,17 @@
 - `ls` muestra todo el contenido en el directorio actual
 - `mkdir nombre` crea una nueva carpeta con el nombre indicado
 - `touch nombre.extension` crea un archivo con el nombre y extension especificados 
-
+---
+### Atajos del teclado utiles para VS CODE
+- `alt + z` ajusta el texto al tamaño de la ventana **Recomendado**
+- `ctrl + s` guarda el archivo
+- `ctrl + c` copia contenido seleccionado
+- `ctrl + x` corta contenido seleccionado
+- `ctrl + v` pega contenido seleccionado
+- `ctrl + a` selecciona todo el contenido del archivo seleccionado
+- `ctrl + z` deshace el cambio actual
+- `ctrl + y` rehace el cambio anterior
+- `alt + shift + a` comenta el codigo seleccionado
 
 <br>
 
