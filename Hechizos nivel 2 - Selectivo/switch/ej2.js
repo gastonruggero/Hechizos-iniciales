@@ -12,6 +12,22 @@ const leer = require("prompt-sync")();
 
 
 function main() {
+    let nombreVarita="";
+    console.log("Ingresa el nombre del núcleo de tu varita");
+    nombreVarita=leer();
+    switch (nombreVarita){
+        case "Fénix":
+        console.log("¡Excelente elección! Las varitas con núcleo de fénix son poderosas y leales.");
+        break;
+        case "Unicornio":
+        console.log("Las varitas con núcleo de unicornio son conocidas por su pureza y fuerza.");
+        break;
+        case "Dragón":
+            console.log("¡Cuidado! Las varitas con núcleo de dragón son poderosas pero pueden ser temperamentales.");
+    break;
+    default:
+        console.log("No reconocemos ese tipo de núcleo. Por favor, ingrese un núcleo válido.");
+        }   
     
 }
 
