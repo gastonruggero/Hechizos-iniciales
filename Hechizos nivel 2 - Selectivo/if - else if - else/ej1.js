@@ -11,6 +11,7 @@ const leer = require("prompt-sync")();
 
 
 function main() {
+    let edad=0;
     console.log("Hola, cuál es tu edad?");
     edad=Number(leer());
     if (edad>11){

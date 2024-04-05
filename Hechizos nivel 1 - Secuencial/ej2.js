@@ -13,10 +13,13 @@ const leer = require("prompt-sync")();
 
 
 function main() {
+    let varitas=0;
+    let libros=0;
+    let ingredientes=0;
     console.log("Cuántas varitas hay?");
-let varitas=Number(leer());
+varitas=Number(leer());
 console.log("Cuántos libros hay?");
-let libros=Number(leer());
+libros=Number(leer());
     ingredientes=(varitas*3)+(libros*2);
     console.log("Precisarás ", ingredientes, "ingredientes");
     

@@ -14,7 +14,25 @@ const leer = require("prompt-sync")();
 
 
 function main() {
-    
+    let puntaje=0;
+    let casa="";
+    console.log("Qué puntaje obtuviste en la prueba?");
+    puntaje=Number(leer());
+    if (puntaje>90){
+        casa="Gryffindor";
+        console.log("De acuerdo a tu puntaje, perteneces a la casa ", casa);
+            } else if (puntaje>70){
+                casa="Hufflepuff";
+                console.log("De acuerdo a tu puntaje, perteneces a la casa ", casa);
+            } else if (puntaje>50){
+                casa="Ravenclaw";
+                console.log("De acuerdo a tu puntaje, perteneces a la casa ", casa);
+            } else if (puntaje<50){
+                casa="Slytherin";
+                console.log("De acuerdo a tu puntaje, perteneces a la casa ", casa);
+            }
+
+            
 }
 
 

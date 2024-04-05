@@ -10,12 +10,14 @@ const leer = require("prompt-sync")();
 
 
 function main() {
-    
+    let peso=0;
+    let plumas=0;
+    let total=0;
     console.log("Hola Harry, cuántos kilogramos pesa tu Nimbus 2000?");
-    let peso=Number(leer());
+    peso=Number(leer());
     console.log("Cuántas plumas utilizaste para fabricarla?");
-    let plumas=Number(leer());
-    let total=peso+(plumas*.1);
+    plumas=Number(leer());
+    total=peso+(plumas*.1);
     console.log("Tu Nimbus pesa ", total, "kg");
 }
 

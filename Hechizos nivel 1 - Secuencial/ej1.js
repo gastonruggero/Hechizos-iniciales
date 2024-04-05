@@ -10,10 +10,12 @@ const leer = require("prompt-sync")();
 
 
 function main() {
+    let raices=0;
+    let escarabajos=0;
     console.log("Cuántas raíces de mandrágora precisas para tu pócima?");
-let raices=Number(leer());
+raices=Number(leer());
 console.log("Cuántos escarabajos ojo de tigre precisas para tu pócima?");
-let escarabajos=Number(leer());
+escarabajos=Number(leer());
     console.log("Precisas un total de ", raices+escarabajos, "ingredientes");
 }
 

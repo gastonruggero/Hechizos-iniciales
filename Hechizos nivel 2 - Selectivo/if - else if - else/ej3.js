@@ -13,7 +13,16 @@ const leer = require("prompt-sync")();
 
 
 function main() {
-    
+    let planta="";
+    console.log("Qué planta encontraste?");
+    planta=leer();
+    if (planta=="Mandragora" || planta=="Valeriana"){
+        console.log("Tu planta es apta para el examen");
+    }    else if (planta=="Bobotuber" || planta=="Whompling Willow"){
+        console.log("No te será posible rendir el examen ya que son plantas muy peligrosas!");
+    } else {
+        console.log("No aceptamos ese tipo de planta :(");
+    }
 }
 
 

@@ -10,11 +10,14 @@ const leer = require("prompt-sync")();
 
 
 function main() {
+    let edad=0;
+    let diasPractica=0;
+    let potencia=0;
     console.log("Cuántos años tiene el mago?");
-    let edad=Number(leer());
+    edad=Number(leer());
     console.log("Cuántos días de práctica posee?");
-    let diasPractica=Number(leer());
-    let potencia=(edad*2)+(diasPractica/2);
+    diasPractica=Number(leer());
+    potencia=(edad*2)+(diasPractica/2);
     console.log("La potencia calculada para el hechizo Patronus es de", potencia);
     
 }
