@@ -7,7 +7,7 @@
 3. Cada ejercicio tiene que mostrar el resultado final en la terminal informando correctamente lo solicitado
     - El codigo a desarrollar **solo** puede estar dentro de la funcion **main**
     - Si es necesario declarar constantes estas deben ir en la parte superior del archivo luego de la importacion de **leer**
-
+ 
 
 #### Comandos utiles para este proyecto
 - `cd nombreDirectorio` mueve desde la terminal a otra carpeta accesible en el directorio actual
