@@ -11,6 +11,14 @@ const leer = require("prompt-sync")();
 
 
 function main() {
+    console.log("Hola, cuál es tu edad?");
+    edad=Number(leer());
+    if (edad>11){
+        console.log("Tienes la edad suficiente para que te pueda vender una varita");
+
+    } else {
+        console.log("Lamentablemente no posees la edad suficiente para que pueda venderte una varita :(");
+    }
     
 }
 
