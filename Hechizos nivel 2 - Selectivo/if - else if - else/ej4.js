@@ -11,13 +11,13 @@ const leer = require("prompt-sync")();
 
 
 function main() {
-    let nivLealtad=0;
-    let nivAstucia=0;
+    let nivLealtad = 0;
+    let nivAstucia = 0;
     console.log("Ingresa tu nivel de lealtad");
-    nivLealtad=Number(leer());
+    nivLealtad = Number(leer());
     console.log("Ahora preciso saber tu nivel de astucia");
-    nivAstucia=Number(leer());
-    if (nivLealtad>70 && nivAstucia>80){
+    nivAstucia = Number(leer());
+    if (nivLealtad > 70 && nivAstucia > 80) {
         console.log("Tu varita está apta");
     } else {
         console.log("Tu varita no está apta");
