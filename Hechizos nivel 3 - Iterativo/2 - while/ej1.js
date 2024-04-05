@@ -17,7 +17,7 @@ Recuerda, en Hogwarts la valentía, la inteligencia y el trabajo en equipo son f
 Vidas iniciales/minimas, daño jugador/enemigo y hechizos a usar (minimo 3) quedan a su propia eleccion
 Considerar que:
 - la vida del enemigo no puede ser menor que la del jugador
-- cada hechizo tiene un daño unico, el del enemigo es unico
+- cada hechizo tiene un valor de daño unico y el enemigo tiene 1 solo hechizo de ataque
  */
 
 
