@@ -8,13 +8,13 @@
     - El codigo a desarrollar **solo** puede estar dentro de la funcion **main**
     - Si es necesario declarar constantes estas deben ir en la parte superior del archivo luego de la importacion de **leer**
  
-#### Para actualizar con el repositorio original
+## Para actualizar con el repositorio original
 1. `git remote add upstream https://github.com/Erick-C3/Hechizos-iniciales.git` (_**solo la primer vez**_)
 1. `git fetch upstream`
 1. `git merge upstream/main`
     - En este caso cerrar la terminal y usar la interfaz de VS Code ubicado a la izquierda, agregar el mensaje del merge a realizar y finalmente actualizar el repositorio personal en github
 
-#### Comandos utiles para este proyecto
+### Comandos utiles para este proyecto
 - `cd nombreDirectorio` mueve desde la terminal a otra carpeta accesible en el directorio actual
 - `cd carpeta1/otraCarpeta` mueve hasta la direccion indicada, en este caso 'otraCarpeta'
 - `cd ..` sube un nivel en el directorio actual, o sea vuelve atras en el directorio
