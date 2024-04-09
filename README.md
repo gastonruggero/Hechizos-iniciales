@@ -12,7 +12,10 @@
 1. `git remote add upstream https://github.com/Erick-C3/Hechizos-iniciales.git` (_**solo la primera vez**_)
 1. `git fetch upstream`
 1. `git merge upstream/main`
-    - En este caso cerrar la terminal y usar la interfaz de VS Code ubicado a la izquierda, agregar el mensaje del merge a realizar y finalmente actualizar el repositorio personal en github
+    1. Luego de usar este comando cerrar la terminal
+    1. Seleccionar la interfaz de Git en VS Code ubicado a la izquierda
+    1. Agregar el mensaje del merge a realizar
+    1. Finalmente actualizar el repositorio personal en github
 
 ### Comandos utiles para este proyecto
 - `cd nombreDirectorio` mueve desde la terminal a otra carpeta accesible en el directorio actual
