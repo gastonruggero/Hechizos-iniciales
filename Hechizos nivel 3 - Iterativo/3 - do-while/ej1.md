@@ -22,8 +22,8 @@ El estudiante cuenta con 30 intentos para destruirlos todos, si es que aún sigu
 - El estudiante tiene el primer intento donde los horrocruxes no pueden derrotarlo inmediatamente 
 
 - Además de la búsqueda y la resolución de enigmas, el estudiante también debe administrar cuidadosamente sus puntos de cordura 200 y salud 400. Los encuentros con los Horrocruxes y los contraataques de estos objetos malignos pueden afectar negativamente tanto la cordura como la salud del estudiante. Si los puntos de cordura o salud llegan a cero, el estudiante perderá el juego.
-El daño de los Horrocruxes es igual a 5.7 aplicado a la cordura y 10.4 a la salud por cada intento fallido, por ejemplo si se fallan 10 veces el daño recibido en ese momento es 57 a la cordura y 104 a la salud
-Es posible que el estudiante rechache el daño de los horrocrux en algun momento debido a su voluntad y motivacion, en este caso solo podra rechazar un tipo de daño en especifico y el mismo tendra que indicar si desea proteger la cordura o su salud. La probabilidad de que esto suceda es de un 50% pero por cada horrocrux destruido disminuye un 11.875%
+El daño de los Horrocruxes es igual a 5.7 aplicado a la cordura y 10.4 a la salud por cada intento fallido, por ejemplo si se fallan 10 veces el daño recibido en ese momento es 57 a la cordura y 104 a la salud.
+Es posible que el estudiante rechache el daño de los horrocrux en algun momento debido a su voluntad y motivacion, en este caso solo podra rechazar un tipo de daño en especifico y el mismo tendra que indicar si desea proteger la cordura o su salud. La probabilidad de que esto suceda es de un 50% y por cada horrocrux destruido disminuye un 11.875%
 
 - El objetivo final del estudiante es destruir todos los Horrocruxes antes de que su cordura o salud se agoten por completo, lo que resultaría en su derrota. Al destruir todos los Horrocruxes, el estudiante habrá triunfado sobre las fuerzas oscuras y habrá ayudado a derrotar a Voldemort, restaurando la paz en el mundo mágico. 
 En cada caso agregar el mensaje correspondiente al final de esta simulacion
