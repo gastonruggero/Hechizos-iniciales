@@ -15,10 +15,11 @@
     1. Nagini (serpiente)          es "N@9ini?" 
         - donde ? es un caracter generado aleatoriamente entre H y K 
 
-- El estudiante si o si tiene
 
-- Cada Horrocrux tiene un 5% de probabilidad de quitar la cordura y salud totalmente, esta probabilidad aumenta un 2.4% por cada horrocrux destruido, despues de todo son objetos malditos que no cualquier mortal puede destruir facilmente
+- Cada Horrocrux tiene un 5% de probabilidad de quitar la cordura y salud totalmente antes de cada intento, esta probabilidad aumenta un 2.4% por cada horrocrux destruido, despues de todo son objetos malditos que no cualquier mortal puede destruir facilmente
 El estudiante cuenta con 30 intentos para destruirlos todos, si es que aún sigue en pie y cuerdo
+
+- El estudiante tiene el primer intento donde los horrocruxes no pueden derrotarlo inmediatamente 
 
 - Además de la búsqueda y la resolución de enigmas, el estudiante también debe administrar cuidadosamente sus puntos de cordura 200 y salud 400. Los encuentros con los Horrocruxes y los contraataques de estos objetos malignos pueden afectar negativamente tanto la cordura como la salud del estudiante. Si los puntos de cordura o salud llegan a cero, el estudiante perderá el juego.
 El daño de los Horrocruxes es igual a 5.7 aplicado a la cordura y 10.4 a la salud por cada intento fallido, por ejemplo si se fallan 10 veces el daño recibido en ese momento es 57 a la cordura y 104 a la salud
