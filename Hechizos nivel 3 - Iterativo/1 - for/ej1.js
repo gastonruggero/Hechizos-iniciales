@@ -1,4 +1,7 @@
 const leer = require("prompt-sync")();
+const HECHIZO_UNO="Wingardium leviosa";
+const HECHIZO_DOS="Tucu tucu";
+const HECHIZO_TRES="Pim pum pam"
 
 /**
  * Ej 1
@@ -12,6 +15,20 @@ const leer = require("prompt-sync")();
 
 
 function main() {
+    let intentosMax=4;
+    let hechizo="";   
+    for (let intentosMax = 1; intentosMax < 4; intentosMax++) {
+        console.log("Ingresa un nombre de hechizo");
+        hechizo=leer();
+        if(hechizo==HECHIZO_UNO|| hechizo== HECHIZO_DOS|| hechizo==HECHIZO_TRES)
+        {
+            console.log("Nombre de hechizo correcto");
+            intentosMax=4;
+        } else {
+            console.log("Hechizo inexistente o mal nombrado");
+        }
+    } 
+    console.log("Los hechizos correctos eran: ", HECHIZO_UNO+"\n"+ HECHIZO_DOS+"\n"+ HECHIZO_TRES);
     
 }
 

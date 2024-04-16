@@ -1,4 +1,12 @@
 const leer = require("prompt-sync")();
+const HECHIZO_UNO="Expecto Patronum";
+const HECHIZO_DOS="Wingardium Leviosa";
+const HECHIZO_TRES="Expelliarmus";
+const HECHIZO_CUATRO="Avada Kedavra";
+const ID_HECHIZO_UNO="3007";
+const ID_HECHIZO_DOS="0112";
+const ID_HECHIZO_TRES="1234";
+const ID_HECHIZO_CUATRO="4567";
 
 /**
  * Ej 3
@@ -15,13 +23,32 @@ El programa debe asegurarse de que el código ingresado sea un número entero de
 Hechizos Disponibles:
 
 Expecto Patronum
-Wingardium Leviosa
+
 Expelliarmus
 Avada Kedavra
  */
-
+let IdIngresado="";
 
 function main() {
+    console.log("Ingrese el código de hechizo por favor:");
+    IdIngresado=leer();
+    switch (IdIngresado){
+        case ID_HECHIZO_UNO:
+            console.log("Elegiste ", HECHIZO_UNO);
+            break;
+        case ID_HECHIZO_DOS:
+            console.log("Elegiste ", HECHIZO_DOS);
+            break;
+        case ID_HECHIZO_TRES:
+            console.log("Elegiste ", HECHIZO_TRES);
+            break;
+        case ID_HECHIZO_CUATRO:
+            console.log("Elegiste ", HECHIZO_CUATRO);
+            break;
+        default:
+            console.log("No corresponde a un código de hechizo válido");
+    }
+
     
 }
 
