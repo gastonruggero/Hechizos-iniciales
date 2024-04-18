@@ -35,31 +35,28 @@ function main() {
     while (ataqueDementores < MAX_ATAQUE_DEMENTORES && estudiante >= 1 && lastre >= 1) {
         console.log("### Ingresa un número entre 0 y ", MAX_ATAQUE, " para lanzar un ataque");
         numAtaqueGen = Math.floor(Math.random() * MAX_ATAQUE);
-        numAtaqueIng = leer();
+        numAtaqueIng = Number(leer());
         if (numAtaqueIng == numAtaqueGen) {
-            console.log(numAtaqueGen);
+            //console.log(numAtaqueGen,"hh");
             console.log("**** Te defendiste con éxito!");
         } else {
             ataqueDementores = ataqueDementores + 1;
             blancoDementores = Math.floor(Math.random() * POS_ATAQUE) + 1;
             // 1 ataca al estudiante - 2 al lastre - 3 a ambos // 
-            console.log(blancoDementores);
+            //console.log(numAtaqueGen,"hh");
             switch (blancoDementores) {
                 case 1:
                     console.log("Has sido atacado :(");
-                    console.log("Los Dementores han atacado",ataqueDementores,"veces.");
                     estudiante = estudiante - 1;
                     console.log("Estudiante: ", estudiante, " Lastre: ", lastre);
                     break;
                 case 2:
                     console.log("Atacaron al lastre :(");
-                    console.log("Los Dementores han atacado",ataqueDementores,"veces.");
                     lastre = lastre - 1;
                     console.log("Estudiante: ", estudiante, " Lastre: ", lastre);
                     break;
                 case 3:
                     console.log("Ambos han sido atacados :o");
-                    console.log("Los Dementores han atacado",ataqueDementores,"veces.");
                     lastre = lastre - 1;
                     estudiante = estudiante - 1;
                     console.log("Estudiante: ", estudiante, " Lastre: ", lastre);
@@ -71,17 +68,18 @@ function main() {
         }
     }
     //genero la posibilidad de ayuda -- 1 si -- 2 no
-ayuda = Math.floor(Math.random()*2)+1;
-switch (ayuda) {
-    case 1:
-        console.log("Recibirás ayuda de un ser misterioso");
-        break;
-    case 2:
-        console.log("Estás más solo que Kung-fu");
-        break;
-    default:
-        break;
-}
+    ayuda = Math.floor(Math.random() * 2) + 1;
+    switch (ayuda) {
+        case 1:
+            console.log("Recibirás ayuda de un ser misterioso - Ganaste");
+            break;
+        case 2:
+            console.log("Estás más solo que Kung-fu");
+            console.log("Resultado final: \nHas recibido 5 ataques de los Dementores.\nEstudiante: ", estudiante, " Lastre: ", lastre);
+            break;
+        default:
+            break;
+    }
 }
 
 
