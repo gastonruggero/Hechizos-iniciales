@@ -1,4 +1,10 @@
 const leer = require("prompt-sync")();
+const MAX_ATAQUE = 3;
+const MAX_ATAQUE_DEMENTORES = 5;
+const POS_ATAQUE = 3;
+const MAX_ESTUDIANTE = 6;
+const MAX_LASTRE = 6;
+
 
 /**
  * Ej 2
@@ -17,7 +23,65 @@ Recuerda, tanto tú como tu ser querido pueden recibir ataques de los Dementores
 
 
 function main() {
-    
+    let numAtaqueIng = 0;
+    let numAtaqueGen = 0;
+    let ataqueDementores = 0;
+    let blancoDementores = 0;
+    let estudiante = MAX_ESTUDIANTE;
+    let lastre = MAX_LASTRE;
+    let ayuda = 1;
+    console.log("*** Comienza un ataque de Dementores :( ***");
+    console.log("Estudiante: ", estudiante, " Lastre: ", lastre);
+    while (ataqueDementores < MAX_ATAQUE_DEMENTORES && estudiante >= 1 && lastre >= 1) {
+        console.log("### Ingresa un número entre 0 y ", MAX_ATAQUE, " para lanzar un ataque");
+        numAtaqueGen = Math.floor(Math.random() * MAX_ATAQUE);
+        numAtaqueIng = leer();
+        if (numAtaqueIng == numAtaqueGen) {
+            console.log(numAtaqueGen);
+            console.log("**** Te defendiste con éxito!");
+        } else {
+            ataqueDementores = ataqueDementores + 1;
+            blancoDementores = Math.floor(Math.random() * POS_ATAQUE) + 1;
+            // 1 ataca al estudiante - 2 al lastre - 3 a ambos // 
+            console.log(blancoDementores);
+            switch (blancoDementores) {
+                case 1:
+                    console.log("Has sido atacado :(");
+                    console.log("Los Dementores han atacado",ataqueDementores,"veces.");
+                    estudiante = estudiante - 1;
+                    console.log("Estudiante: ", estudiante, " Lastre: ", lastre);
+                    break;
+                case 2:
+                    console.log("Atacaron al lastre :(");
+                    console.log("Los Dementores han atacado",ataqueDementores,"veces.");
+                    lastre = lastre - 1;
+                    console.log("Estudiante: ", estudiante, " Lastre: ", lastre);
+                    break;
+                case 3:
+                    console.log("Ambos han sido atacados :o");
+                    console.log("Los Dementores han atacado",ataqueDementores,"veces.");
+                    lastre = lastre - 1;
+                    estudiante = estudiante - 1;
+                    console.log("Estudiante: ", estudiante, " Lastre: ", lastre);
+                    break;
+                default:
+                    break;
+            }
+
+        }
+    }
+    //genero la posibilidad de ayuda -- 1 si -- 2 no
+ayuda = Math.floor(Math.random()*2)+1;
+switch (ayuda) {
+    case 1:
+        console.log("Recibirás ayuda de un ser misterioso");
+        break;
+    case 2:
+        console.log("Estás más solo que Kung-fu");
+        break;
+    default:
+        break;
+}
 }
 
 

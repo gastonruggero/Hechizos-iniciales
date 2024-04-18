@@ -1,4 +1,11 @@
 const leer = require("prompt-sync")();
+const MAX_VOLDEMORT=10;
+const MAX_ESTUDIANTE=10;
+const MIN_VOLDEMORT=-1;
+const MIN_ESTUDIANTE=1;
+const VALOR_DANIO_VOLDEMORT=3;
+const CANT_HECHIZOS=3;
+
 
 /**
  * Ej 1
@@ -22,8 +29,28 @@ Considerar que:
 
 
 function main() {
-    
+    let voldemort=MAX_VOLDEMORT;
+    let estudiante=MAX_ESTUDIANTE;
+    let numAtaqueIng=0;
+    let numAtaqueGen=0;
+    console.log("**** Vas a luchar contra Voldemort ****");
+    console.log("--- Estudiante:", estudiante,"--- Voldemort:", voldemort);
+    while(estudiante>=MIN_ESTUDIANTE && voldemort>=MIN_VOLDEMORT){
+    console.log("### Puedes lanzar tu ataque, ingresando un número del 1 al", CANT_HECHIZOS);
+    numAtaqueIng=Number(leer());
+    numAtaqueGen=Math.floor(Math.random()*CANT_HECHIZOS)+1;
+    if (numAtaqueIng==numAtaqueGen) {
+        voldemort=voldemort-numAtaqueGen;
+        console.log(numAtaqueGen);
+        console.log("--- Has acertado!");
+        console.log("--- Estudiante:", estudiante, "Voldemort:", voldemort);
+    } else {
+        estudiante=estudiante-VALOR_DANIO_VOLDEMORT;
+        console.log(numAtaqueGen);
+        console.log("--- Fallaste en tu ataque!");
+        console.log("--- Estudiante:", estudiante, "Voldemort:", voldemort);
+    }
 }
-
+}
 
 main();
