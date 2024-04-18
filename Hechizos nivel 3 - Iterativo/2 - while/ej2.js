@@ -71,7 +71,7 @@ function main() {
         }
     }
     //genero la posibilidad de ayuda -- 1 si -- 2 no
-ayuda = Math.floor(Math.random())+1;
+ayuda = Math.floor(Math.random()*2)+1;
 switch (ayuda) {
     case 1:
         console.log("Recibirás ayuda de un ser misterioso");
