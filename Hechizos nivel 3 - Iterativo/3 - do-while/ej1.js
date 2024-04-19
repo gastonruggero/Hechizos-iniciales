@@ -19,8 +19,11 @@ const ID_DIADEMA_RR = 4;
 const ID_COPA_HH = 3;
 const ID_NAGINI = 5;
 
-function generarHorrocrux(horrocrux) {
+function estaVivoHorro(horrocrux) {
+    
+}
 
+function generarHorrocrux(horrocrux) {
     let llave = "";
     let pase = "";
 
@@ -85,13 +88,13 @@ function main() {
         
             console.log("La contraseña correcta es:", pase);
           
-        } while (intento<1);
+        } while (intento>1);
         if (!estadoMision){
             danioTotalGen=Math.random();
             if (danioTotalGen<danioAcumulado){
                 console.log("El Horrocrux ha consumido todas tus energías.");
             } else if (estadoMision){
-                console.log("Has acertado y destruido al Horrocrux. Atención!Su capacidad de daño aumentó!" );
+                console.log("Has acertado y destruido al Horrocrux. Atención! Su capacidad de daño aumentó!" );
                 danioAcumulado=PROB_DANIO_HORRO+INCREMENTO_PROB_DANIO_HORRO;
             }
             intento=intento+1;
@@ -100,14 +103,5 @@ function main() {
     while(intento<3 && salud>=1 && cordura >= 1);
     console.log("Juego finalizado.");
     
-
-
-
-
 }
-
-
-
-
-
 main();
