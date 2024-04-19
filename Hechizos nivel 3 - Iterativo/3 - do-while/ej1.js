@@ -65,33 +65,41 @@ function main() {
     let ingresoUsuario = "";
     let intento=0;
     let estadoMision=false;
-    let danioSaludGen=0;
     let danioTotalGen=0;
+    let danioAcumulado=PROB_DANIO_HORRO;
    
     console.log("*** Hoy vas a luchar contra los Horrocruxes");
-    
-    do {
-        console.log("### Salud: ", salud, "### Cordura: ", cordura);
-        horrocrux = Math.floor(Math.random() * 5) + 1;
-        pase = generarHorrocrux(horrocrux);
-        ingresoUsuario = String(leer());
-        if (ingresoUsuario == pase) {
-            console.log("correcto");
-            estadoMision=true;
-        } else {
-            console.log("fallaste");
-            estadoMision=false;
-        }
-    
-        console.log("La contraseña correcta es:", pase);
-      
-    } while (intento<1);
-    if (!estadoMision){
-        danioTotalGen=Math.random();
-        if (danioTotalGen<PROB_DANIO_HORRO){
-            console.log("El Horrocrux ha consumido todas tus energías.");
+    do{
+        do {
+            console.log("### Salud: ", salud, "### Cordura: ", cordura);
+            horrocrux = Math.floor(Math.random() * 5) + 1;
+            pase = generarHorrocrux(horrocrux);
+            ingresoUsuario = String(leer());
+            if (ingresoUsuario == pase) {
+                console.log("correcto");
+                estadoMision=true;
+            } else {
+                console.log("fallaste");
+                estadoMision=false;
+            }
+        
+            console.log("La contraseña correcta es:", pase);
+          
+        } while (intento<1);
+        if (!estadoMision){
+            danioTotalGen=Math.random();
+            if (danioTotalGen<danioAcumulado){
+                console.log("El Horrocrux ha consumido todas tus energías.");
+            } else if (estadoMision){
+                console.log("Has acertado y destruido al Horrocrux. Atención!Su capacidad de daño aumentó!" );
+                danioAcumulado=PROB_DANIO_HORRO+INCREMENTO_PROB_DANIO_HORRO;
+            }
+            intento=intento+1;
         }
     }
+    while(intento<3 && salud>=1 && cordura >= 1);
+    console.log("Juego finalizado.");
+    
 
 
 
