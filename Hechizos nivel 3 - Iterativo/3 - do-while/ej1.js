@@ -1,7 +1,7 @@
 const leer = require("prompt-sync")();
 const PROB_DANIO_HORRO = .005;
 const INCREMENTO_PROB_DANIO_HORRO = 0.0024;
-const INTENTOS_ESTUDIANTE = 30;
+
 const PUNTOS_CORDURA_MAX = 200;
 const PUNTOS_SALUD_MAX = 400;
 const DANIO_CORDURA = .057;
@@ -11,8 +11,8 @@ const ANILLO_G = "?G4unt!";
 const COPA_HH = "H3l?ga!";
 const DIADEMA_RR = "?R4vena";
 const NAGINI = "N@9ini?";
-const CANTIDAD_HORRO_INICIAL = 5;
-
+const LLAVE_FIN = 25;
+const MAX_INTENTOS=30;
 const ID_DIARIO_TR = 1;
 const ID_ANILLO_G = 2;
 const ID_COPA_HH = 3;
@@ -20,54 +20,12 @@ const ID_DIADEMA_RR = 4;
 const ID_NAGINI = 5;
 
 
-let vidaNagini = true;
-let vidaDiademaRR = true;
-let vidaAnilloG = true;
-let vidaCopaHH = true;
-let vidaDiarioTR = true;
 
-function comprobarVidaHorro(horrocrux) {
-    let horrocruxVivo = 0;
-    
-    if (vidaDiarioTR == true) {
-        horrocruxVivo = horrocrux ;
-
-    } else {
-        horrocruxVivo = horrocrux + 1;
-    } 
-
-    if (vidaAnilloG ==true) {
-        horrocruxVivo = horrocrux;
-    }else {
-        horrocruxVivo = horrocrux +1;
-    }
-    if (vidaDiademaRR == true) {
-        horrocruxVivo = horrocrux;
-    }else {
-        horrocruxVivo = horrocrux + 1;
-    }
-     if (vidaCopaHH == true) {
-        horrocruxVivo = horrocrux;
-    } else {
-        horrocruxVivo = horrocrux +1;
-    }
-     if (vidaNagini ==true) {
-        horrocruxVivo = horrocrux;
-    } else {
-        horrocruxVivo = 1;
-    }
-    return horrocruxVivo;
-}
-
-function todosMuertos() {
-    !vidaAnilloG && !vidaCopaHH && !vidaDiademaRR && !vidaDiarioTR && !vidaNagini;
-}
-
-function generarHorrocrux(horrocruxVivo) {
+function generarHorrocrux(horrocruxActual) {
     let llave = "";
     let pase = "";
 
-    switch (horrocruxVivo) {
+    switch (horrocruxActual) {
 
         case ID_DIARIO_TR:
             console.log("*** Te enfrentarás al Diario de Tom Riddle.\nLa contraseña es", DIARIO_TR, "donde ? es un numero generado aleatoriamente entre -3 y 20.");
@@ -101,96 +59,107 @@ function generarHorrocrux(horrocruxVivo) {
             console.log("La contraseña correcta es:", pase);
             break;
         default:
-            console.log("otra opcion");
+            console.log("Derrotaste a todos los Horrocruxes");
+            llave = LLAVE_FIN;
             break;
     }
 
     return llave;
 }
 
-function muerteHorrocrux(horrocruxVivo) {
-
-    switch (horrocruxVivo) {
+function muerteHorrocrux(horrocruxActual) {
+    let todosMuertos = false;
+    switch (horrocruxActual) {
         case ID_DIARIO_TR:
             console.log("Acabaste con el Diario de TR");
-            vidaDiarioTR = false;
+            
             break;
         case ID_ANILLO_G:
             console.log("Acabaste con el Anillo de G");
-            vidaAnilloG = false;
+            vidaHorrocrux = false;
             break;
         case ID_COPA_HH:
             console.log("Acabaste con la Copa HH");
-            vidaCopaHH = false;
+            
             break;
         case ID_DIADEMA_RR:
             console.log("Acabaste con la diadema RR");
-            vidaDiademaRR = false;
+            
             break;
         case ID_NAGINI:
             console.log("Acabaste con Nagini");
-            vidaNagini = false;
+            vidaHorrocrux = true;
             break;
 
+
     }
-   /* horrocruxVivo=0;*/
 
+    return todosMuertos;
 }
-
-
-function main() {
-    let salud = PUNTOS_SALUD_MAX;
-    let cordura = PUNTOS_CORDURA_MAX;
-    let horrocrux = 0;
-    let llave = "";
+function generarDialogo(salud, cordura, intento, horrocruxActual) {
     let ingresoUsuario = "";
-    let intento = 1;
-    let danioTotalGen = 0;
-    let danioAcumulado = PROB_DANIO_HORRO;
-    let horrocruxVivo = 0;
+    console.log("### Salud: ", salud, "### Cordura: ", cordura, intento);
+    console.log(horrocruxActual);
+    
+    ingresoUsuario = String(leer());
+    return ingresoUsuario;
+}
+function ingresoOK(danioAcumulado) {
 
-    console.log("*** Hoy vas a luchar contra los Horrocruxes");
-    for (intento = 1; intento <= 10; intento++) {
-        console.log("### Salud: ", salud, "### Cordura: ", cordura, intento);
-        console.log(vidaAnilloG, ID_ANILLO_G, vidaCopaHH, ID_COPA_HH, vidaDiademaRR, ID_DIADEMA_RR, vidaDiarioTR, ID_DIARIO_TR, vidaNagini, ID_NAGINI);
-        horrocrux = Math.floor(Math.random() * CANTIDAD_HORRO_INICIAL)+1;
-        console.log(horrocrux);
-        horrocruxVivo = comprobarVidaHorro(horrocrux);
-        console.log(horrocruxVivo);
-        llave = generarHorrocrux(horrocruxVivo);
-        ingresoUsuario = String(leer());
-        if (ingresoUsuario === llave) {
-            console.log("correcto");
-            console.log("Has acertado y destruido al Horrocrux. Atención! Su capacidad de daño aumentó!");
-            danioAcumulado = PROB_DANIO_HORRO + INCREMENTO_PROB_DANIO_HORRO;
-            muerteHorrocrux(horrocruxVivo);
-
-            
-        } else {
-            console.log("fallaste");
-            danioTotalGen = Math.random();
-            console.log("daño", danioTotalGen);
+    console.log("correcto");
+    danioAcumulado = danioAcumulado + INCREMENTO_PROB_DANIO_HORRO;
+    console.log("Has acertado y destruido al Horrocrux. Atención! Su capacidad de daño aumentó a", danioAcumulado);
+    return danioAcumulado;
+}
+function ingresoErrado(danioAcumulado, salud, cordura,intento) {
+    let danioTotalGen=0;
+    console.log("fallaste");
+                danioTotalGen = Math.random();
+            console.log("daño", danioTotalGen, danioAcumulado);
             if (danioTotalGen < danioAcumulado) {
                 console.log("El Horrocrux ha consumido todas tus energías.", danioTotalGen);
                 cordura = 0;
                 salud = 0;
-                intento = 30;
-            }
-            else {
+                intento=MAX_INTENTOS;
+
+            } else {
                 salud = salud - (salud * DANIO_SALUD);
-                cordura = cordura - (cordura * DANIO_CORDURA);
-                intento = intento + 1;
+                cordura = cordura - (cordura * DANIO_CORDURA);  
+                intento = intento + 1;              
             }
+            return intento;    
+}
 
+function main() {
+    let salud = PUNTOS_SALUD_MAX;
+    let cordura = PUNTOS_CORDURA_MAX;
+    let llave = "";
+    let ingresoUsuario = "";
+    let intento = 1;
+    let danioAcumulado = PROB_DANIO_HORRO;
+    let horrocruxActual = 1;
+    let todosMuertos=false;
+
+    console.log("*** Hoy vas a luchar contra los Horrocruxes");
+    do {
+        llave = generarHorrocrux(horrocruxActual);
+        ingresoUsuario = generarDialogo(salud, cordura, intento, horrocruxActual);
+
+        if (ingresoUsuario === llave) {
+            danioAcumulado = ingresoOK(danioAcumulado);
+            horrocruxActual = horrocruxActual + 1;
+            intento = intento + 1;
+            llave=generarHorrocrux; 
+                  
+        } else {
+            intento=ingresoErrado(danioAcumulado,salud, cordura,intento);
+           
+            
         }
-
-    }
-
-
-
-
-
-
+    } while (llave != LLAVE_FIN && intento <= MAX_INTENTOS && todosMuertos!=true);
 
 }
+
+
+
 main();
