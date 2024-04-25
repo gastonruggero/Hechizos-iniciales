@@ -12,7 +12,7 @@ const COPA_HH = "H3l?ga!";
 const DIADEMA_RR = "?R4vena";
 const NAGINI = "N@9ini?";
 const LLAVE_FIN = 25;
-const MAX_INTENTOS=30;
+const MAX_INTENTOS = 30;
 const ID_DIARIO_TR = 1;
 const ID_ANILLO_G = 2;
 const ID_COPA_HH = 3;
@@ -66,41 +66,33 @@ function generarHorrocrux(horrocruxActual) {
 
     return llave;
 }
-
 function muerteHorrocrux(horrocruxActual) {
     let todosMuertos = false;
     switch (horrocruxActual) {
         case ID_DIARIO_TR:
             console.log("Acabaste con el Diario de TR");
-            
             break;
         case ID_ANILLO_G:
-            console.log("Acabaste con el Anillo de G");
-            vidaHorrocrux = false;
+            console.log("Acabaste con el Anillo de G");           
             break;
         case ID_COPA_HH:
             console.log("Acabaste con la Copa HH");
-            
             break;
         case ID_DIADEMA_RR:
             console.log("Acabaste con la diadema RR");
-            
             break;
         case ID_NAGINI:
-            console.log("Acabaste con Nagini");
-            vidaHorrocrux = true;
+            console.log("Acabaste con Nagini");           
             break;
-
-
     }
 
     return todosMuertos;
 }
 function generarDialogo(salud, cordura, intento, horrocruxActual) {
     let ingresoUsuario = "";
-    console.log("### Salud: ", salud, "### Cordura: ", cordura, intento);
+    console.log("### Salud: ", salud, "### Cordura: ", cordura, "### Intento: ", intento);
     console.log(horrocruxActual);
-    
+
     ingresoUsuario = String(leer());
     return ingresoUsuario;
 }
@@ -111,23 +103,23 @@ function ingresoOK(danioAcumulado) {
     console.log("Has acertado y destruido al Horrocrux. Atención! Su capacidad de daño aumentó a", danioAcumulado);
     return danioAcumulado;
 }
-function ingresoErrado(danioAcumulado, salud, cordura,intento) {
-    let danioTotalGen=0;
+function ingresoErrado(danioAcumulado, salud, cordura, intento) {
+    let danioTotalGen = 0;
     console.log("fallaste");
-                danioTotalGen = Math.random();
-            console.log("daño", danioTotalGen, danioAcumulado);
-            if (danioTotalGen < danioAcumulado) {
-                console.log("El Horrocrux ha consumido todas tus energías.", danioTotalGen);
-                cordura = 0;
-                salud = 0;
-                intento=MAX_INTENTOS;
+    danioTotalGen = Math.random();
+    console.log("daño", danioTotalGen, danioAcumulado);
+    if (danioTotalGen < danioAcumulado) {
+        console.log("El Horrocrux ha consumido todas tus energías.", danioTotalGen);
+        cordura = 0;
+        salud = 0;
+        intento = MAX_INTENTOS;
 
-            } else {
-                salud = salud - (salud * DANIO_SALUD);
-                cordura = cordura - (cordura * DANIO_CORDURA);  
-                intento = intento + 1;              
-            }
-            return intento;    
+    } else {
+        salud = salud - (salud * DANIO_SALUD);
+        cordura = cordura - (cordura * DANIO_CORDURA);
+        intento = intento + 1;
+    }
+    return intento;
 }
 
 function main() {
@@ -138,25 +130,21 @@ function main() {
     let intento = 1;
     let danioAcumulado = PROB_DANIO_HORRO;
     let horrocruxActual = 1;
-    let todosMuertos=false;
-
+    let todosMuertos = false;
     console.log("*** Hoy vas a luchar contra los Horrocruxes");
     do {
         llave = generarHorrocrux(horrocruxActual);
         ingresoUsuario = generarDialogo(salud, cordura, intento, horrocruxActual);
-
         if (ingresoUsuario === llave) {
             danioAcumulado = ingresoOK(danioAcumulado);
             horrocruxActual = horrocruxActual + 1;
             intento = intento + 1;
-            llave=generarHorrocrux; 
-                  
+            llave = generarHorrocrux(horrocruxActual);
+            todosMuertos=muerteHorrocrux(horrocruxActual);
         } else {
-            intento=ingresoErrado(danioAcumulado,salud, cordura,intento);
-           
-            
+            intento = ingresoErrado(danioAcumulado, salud, cordura, intento);
         }
-    } while (llave != LLAVE_FIN && intento <= MAX_INTENTOS && todosMuertos!=true);
+    } while (llave != LLAVE_FIN && intento <= MAX_INTENTOS && todosMuertos != true);
 
 }
 
