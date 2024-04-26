@@ -1,7 +1,7 @@
 {
   "name": "algoritmos-ejercicios",
   "version": "1.0.0",
-  "description": "",
+  "description": "1. Forkear este repo para disponer de todos los ejercicios y su debida configuracion del proyecto a usar con la terminal (1 sola vez) 2. Clonar su propia copia en el equipo a usar     - Por cada ejercicio terminado se recomienda hacer un commit         - En caso de resolverlo en grupo de 2 indicar los nombres en el commit 3. Cada ejercicio tiene que mostrar el resultado final en la terminal informando correctamente lo solicitado     - El codigo a desarrollar **solo** puede estar dentro de la funcion **main**     - Si es necesario declarar constantes estas deben ir en la parte superior del archivo luego de la importacion de **leer**",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,5 +11,6 @@
   "license": "ISC",
   "dependencies": {
     "prompt-sync": "^4.2.0"
-  }
+  },
+  "devDependencies": {}
 }
