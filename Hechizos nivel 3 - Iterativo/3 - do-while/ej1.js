@@ -105,8 +105,8 @@ function generarDialogo(intento, horrocruxActual) {
  * Función que aplica cuando acertamos al caracter faltante de la contraseña (pase)
   */
 function ingresoOK() {
-    console.log("correcto");
-    console.log("Has acertado y destruido al Horrocrux. Atención! Su capacidad de daño aumentó a", danioAcumulado);
+    console.log("Correcto");
+    console.log("Has acertado y destruido al Horrocrux. Atención! El próximo tendrá una capacidad de daño de:", danioAcumulado);
 }
 /**
  * Muestra el mensaje de derrota
@@ -129,10 +129,10 @@ function victoria() {
 function ingresoErrado(esquivarDanioAcumulado, danioAcumulado, intento) {
     let danioTotalGen = 0;
     let probEsquivarGen = 0;
-    console.log("fallaste");
+    console.log("Fallaste");
     danioTotalGen = Math.random();
     probEsquivarGen = Math.random();
-    console.log(probEsquivarGen);
+    console.log("La posibilidad de esquivar al Horrocrux es de", probEsquivarGen);
     if (probEsquivarGen < esquivarDanioAcumulado) {
         salud = salud - (salud * DANIO_SALUD);
         cordura = cordura - (cordura * DANIO_CORDURA);
@@ -155,11 +155,11 @@ function elegirPorIngresoErrado(){
     opcion=leer();
     switch (opcion) {
         case "C":
-            console.log("Elegiste cuidar tu cordura");
+            console.log("Elegiste cuidar tu cordura.Perderás puntos de salud");
             salud=salud-(salud*0.104);            
             break;
             case "S":
-                console.log("Elegiste cuidar tu salud");
+                console.log("Elegiste cuidar tu salud.Perderás puntos de cordura");
                 cordura=cordura-(cordura*0.057);
                 break;
         default:
