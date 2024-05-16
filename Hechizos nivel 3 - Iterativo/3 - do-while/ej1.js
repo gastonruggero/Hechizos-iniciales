@@ -132,7 +132,7 @@ function ingresoErrado(esquivarDanioAcumulado, danioAcumulado, intento) {
     console.log("Fallaste");
     danioTotalGen = Math.random();
     probEsquivarGen = Math.random();
-    console.log("La posibilidad de esquivar al Horrocrux es de", probEsquivarGen);
+    console.log("La posibilidad de esquivar al Horrocrux es de", probEsquivarGen," sobre ", esquivarDanioAcumulado);
     if (probEsquivarGen < esquivarDanioAcumulado) {
         salud = salud - (salud * DANIO_SALUD);
         cordura = cordura - (cordura * DANIO_CORDURA);
