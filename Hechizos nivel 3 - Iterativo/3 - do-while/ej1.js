@@ -132,43 +132,48 @@ function ingresoErrado(esquivarDanioAcumulado, danioAcumulado, intento) {
     console.log("Fallaste");
     danioTotalGen = Math.random();
     probEsquivarGen = Math.random();
-    console.log("La posibilidad de esquivar al Horrocrux es de", probEsquivarGen," sobre ", esquivarDanioAcumulado);
+    console.log("La posibilidad de esquivar al Horrocrux es de", probEsquivarGen.toFixed(4), " sobre ", esquivarDanioAcumulado);
     if (probEsquivarGen < esquivarDanioAcumulado) {
         salud = salud - (salud * DANIO_SALUD);
         cordura = cordura - (cordura * DANIO_CORDURA);
         intento = intento + 1;
+        console.log("No pudiste esquivar el ataque :(");
     } else {
-        elegirPorIngresoErrado();
+        safaste();
+        intento = intento + 1;
     }
     if (danioTotalGen < danioAcumulado) {
         cordura = 0;
         salud = 0;
         intento = MAX_INTENTOS;
         derrota();
-    }   
+    }
 
     return intento;
 }
-function elegirPorIngresoErrado(){
-    let opcion="";
-    console.log("Deseas proteger tu cordura [C] o tu salud [S]?");
-    opcion=leer();
+function safaste() {
+    let opcion = "";
+    console.log("Estás de suerte!!!! \nPuedes esquivar este ataque. Deseas proteger tu cordura [C] o tu salud [S]?");
+    opcion = leer();
     switch (opcion) {
         case "C":
             console.log("Elegiste cuidar tu cordura.Perderás puntos de salud");
-            salud=salud-(salud*0.104);            
+            salud = salud - (salud * 0.104);
+
             break;
-            case "S":
-                console.log("Elegiste cuidar tu salud.Perderás puntos de cordura");
-                cordura=cordura-(cordura*0.057);
-                break;
+        case "S":
+            console.log("Elegiste cuidar tu salud.Perderás puntos de cordura");
+            cordura = cordura - (cordura * 0.057);
+
+            break;
         default:
             console.log("Opción equivocada, perdiste tu chance");
-            salud=salud-(salud*0.104);
-            cordura=cordura-(cordura*0.057);
+            salud = salud - (salud * 0.104);
+            cordura = cordura - (cordura * 0.057);
+
             break;
-    } 
-    
+    }
+
 }
 /**
  * Función principal del juego
