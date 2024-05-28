@@ -1,8 +1,8 @@
 const leer = require("prompt-sync")();
-const PROB_ATAQUE_TOTAL = .5;
+const PROB_ATAQUE = .5;
 const DECREMENTO_PROB_ATAQUE = .11875
-const PROB_DANIO_HORRO = .05;
-const INCREMENTO_PROB_ATAQUE_TOTAL_HORRO = 0.024;
+const PROB_DANIO_TOTAL_HORRO = .05;
+const INCREMENTO_PROB_DANIO_TOTAL_HORRO = 0.024;
 const PROB_ESQUIVAR_DANIO = .5;
 const PUNTOS_CORDURA_MAX = 200;
 const PUNTOS_SALUD_MAX = 400;
@@ -22,57 +22,32 @@ const ID_DIADEMA_RR = 4;
 const ID_NAGINI = 5;
 const MENSAJE_DERROTA = "- En el oscuro manto de la derrota, el estudiante enfrentó una verdad devastadora: a pesar de sus esfuerzos incansables, los horrocruxes permanecen intactos, y la sombra del mal se alza triunfante sobre el mundo mágico. Aunque la batalla fue ardua y valiente, el destino ha dictado su veredicto, dejando al estudiante con el amargo sabor de la derrota. Pero incluso en la oscuridad más profunda, la llama de la esperanza aún arde, recordando que la lucha nunca termina y que el mañana siempre guarda la promesa de una nueva oportunidad para la redención y la victoria."
 const MENSAJE_VICTORIA = "- ¡Victoria para el estudiante valiente que, con coraje y determinación, ha destruido todos los horrocruxes! Con cada fragmento de alma oscura eliminado, la luz de la esperanza ha brillado más brillante sobre el mundo mágico. ¡Su sacrificio y valentía han salvado a nuestra comunidad de las sombras de la oscuridad, asegurando un futuro lleno de paz y prosperidad para todas las generaciones venideras!"
+
 let salud = PUNTOS_SALUD_MAX;
 let cordura = PUNTOS_CORDURA_MAX;
-let danioAcumulado = PROB_DANIO_HORRO;
-let horrocruxActual = 1;
-let todosMuertos = false;
-/**
- * Genera un Horrocrux para luchar contra él.
- * @param {Number} horrocruxActual que aparece frente nuestro para luchar.
- * @returns llave: el caracter o número generado al azar para completar la contraseña (pase).
- */
-function generarHorrocrux(horrocruxActual) {
-    let llave = "";
-    switch (horrocruxActual) {
-        case ID_DIARIO_TR:
-            console.log("*** Te enfrentarás al Diario de Tom Riddle.\nLa contraseña es", DIARIO_TR, "donde ? es un numero generado aleatoriamente entre -3 y 20.");
-            llave = String((Math.floor(Math.random() * 23)) - 3);
-            break;
-        case ID_ANILLO_G:
-            console.log("*** Te enfrentarás al Anillo de Gaunt.\nLa contraseña es", ANILLO_G, "donde ? es un numero generado aleatoriamente entre -100 y -70.");
-            llave = String((Math.floor(Math.random() * 30)) - 100);
-            break;
-        case ID_COPA_HH:
-            console.log("*** Te enfrentarás a la Copa de Helga Hufflepuff.\nLa contraseña es", COPA_HH, "donde ? es un numero generado aleatoriamente entre 4 y 12.");
-            llave = String((Math.floor(Math.random() * 8)) + 4);
-            break;
-        case ID_DIADEMA_RR:
-            console.log("*** Te enfrentarás a la Diadema de Rowena Ravenclaw.\nLa contraseña es", DIADEMA_RR, "donde ? es un caracter generado aleatoriamente entre a y e.");
-            llave = String.fromCharCode((Math.floor(Math.random() * 5)) + 97);
-            break;
-        case ID_NAGINI:
-            console.log("*** Te enfrentarás a Nagini.\nLa contraseña es", NAGINI, "donde ? es un caracter generado aleatoriamente entre H y K.");
-            llave = String.fromCharCode((Math.floor(Math.random() * 4)) + 72);
-            break;
-        default:
-            victoria();
-            //todosMuertos=true;
-            llave = LLAVE_FINAL;
-            break;
-    }
-    return llave;
-}
 
+let llave = "";
+let ataqueAcumulado = PROB_ATAQUE;
+
+function mensaje(horrocruxActual) {
+    let horroNombre = ["", "al Diario de Tom Riddle", "al Anillo de Gaunt", "a la Copa de Helga Hufflepuff", "a la Diadema de Rowena Ravenclaw", "a Nagini"];
+    let horroComodin = ["", DIARIO_TR, ANILLO_G, COPA_HH, DIADEMA_RR, NAGINI];
+    let finDeMensaje = ["", "numero generado aleatoriamente entre -3 y 20.", "generado aleatoriamente entre -100 y -70.", "numero generado aleatoriamente entre 4 y 12.", "caracter generado aleatoriamente entre a y e.", "caracter generado aleatoriamente entre H y K."];
+    let llaves = ["", String((Math.floor(Math.random() * 23)) - 3), String((Math.floor(Math.random() * 30)) - 100), String((Math.floor(Math.random() * 8)) + 4), String.fromCharCode((Math.floor(Math.random() * 5)) + 97), String.fromCharCode((Math.floor(Math.random() * 4)) + 72)];
+    console.log("*** Te enfrentarás ", horroNombre[horrocruxActual], "\nLa contraseña es", horroComodin[horrocruxActual], "donde ? es un ", finDeMensaje[horrocruxActual]);
+    console.log("(muestro caracter faltante para pruebas)", llaves[horrocruxActual]);
+    llave = llaves[horrocruxActual];
+
+}
 /**
  * Nos muestra el puntaje en salud, cordrura, así como el número de intento y nos pregunta sobre el caracter faltante
  * @param {Number} intento número de intento
  * @param {Number} horrocruxActual el Horrocrux que tenemos delante actualmente 
  * @returns una variable que compararemos al caracter faltante.
  */
-function generarDialogo(intento, horrocruxActual) {
+function generarDialogo(intento) {
     let ingresoUsuario = "";
-    console.log("### Salud: ", salud, "### Cordura: ", cordura, "### Intento: ", intento);
+    console.log("### Salud: ", salud.toFixed(2), "### Cordura: ", cordura.toFixed(2), "### Intento: ", intento);
     ingresoUsuario = String(leer());
     return ingresoUsuario;
 }
@@ -80,16 +55,21 @@ function generarDialogo(intento, horrocruxActual) {
  * Función que aplica cuando acertamos al caracter faltante de la contraseña (pase)
  *  //comprobar si es el último horrocrux!
   */
-function ingresoOK() {
+function ingresoOK(jugadorStatus) {
     console.log("Correcto");
-    if (horrocruxActual !== ID_NAGINI) {
-        console.log("Has acertado y destruido al Horrocrux. Atención! El próximo tendrá una capacidad de daño de:", danioAcumulado.toFixed(4));
+    if (jugadorStatus.horrocruxActual !== ID_NAGINI) {
+        jugadorStatus.danioAcumulado = jugadorStatus.danioAcumulado + INCREMENTO_PROB_DANIO_TOTAL_HORRO;
+        jugadorStatus.esquivarDanioAcumulado = jugadorStatus.esquivarDanioAcumulado - DECREMENTO_PROB_ATAQUE;
+        jugadorStatus.horrocruxActual = jugadorStatus.horrocruxActual + 1;
+        jugadorStatus.intento = jugadorStatus.intento + 1;
+        console.log("Has acertado y destruido al Horrocrux. Atención! El próximo tendrá una capacidad de daño de:", jugadorStatus.danioAcumulado.toFixed(2));
     } else {
         victoria();
-        console.log("ultimo");
-
+        console.log("Fin del juego");
+        jugadorStatus.intento = MAX_INTENTOS;
+        jugadorStatus.todosMuertos = true;
     }
-    return todosMuertos;
+    return jugadorStatus;
 }
 /**
  * Muestra el mensaje de derrota
@@ -101,8 +81,8 @@ function derrota() {
  * Muestra el mensaje de victoria sobre los Horrocruxes
  */
 function victoria() {
-    todosMuertos = true;
-    console.log(MENSAJE_VICTORIA);
+    
+    console.log(MENSAJE_VICTORIA);    
 }
 /**
  * Función que aplica cuando no acertamos al caracter faltante en la contraseña (pase)
@@ -110,30 +90,31 @@ function victoria() {
  * @param {Number} intento número de intentos
  * @returns pasa al siguiente intento
  */
-function ingresoErrado(esquivarDanioAcumulado, danioAcumulado, intento) {
+function ingresoErrado(jugadorStatus) {
     let danioTotalGen = 0;
     let probEsquivarGen = 0;
     console.log("Fallaste");
     danioTotalGen = Math.random();
     probEsquivarGen = Math.random();
-    console.log("La posibilidad de esquivar al Horrocrux es de", probEsquivarGen.toFixed(4), " sobre ", esquivarDanioAcumulado);
-    if (probEsquivarGen < esquivarDanioAcumulado) {
+    console.log("La posibilidad de esquivar al Horrocrux es de", probEsquivarGen.toFixed(2), " sobre ", jugadorStatus.esquivarDanioAcumulado);
+    if (probEsquivarGen < jugadorStatus.esquivarDanioAcumulado) {
         salud = salud - (salud * DANIO_SALUD);
         cordura = cordura - (cordura * DANIO_CORDURA);
-        intento = intento + 1;
+        jugadorStatus.intento = jugadorStatus.intento + 1;
         console.log("No pudiste esquivar el ataque :(");
     } else {
         safaste();
-        intento = intento + 1;
+        jugadorStatus.intento = jugadorStatus.intento + 1;
     }
-    if (danioTotalGen < danioAcumulado) {
+    if (danioTotalGen < jugadorStatus.danioAcumulado) {
         cordura = 0;
         salud = 0;
-        intento = MAX_INTENTOS;
+        jugadorStatus.intento = MAX_INTENTOS;
         derrota();
     }
-    return intento;
+    return jugadorStatus;
 }
+//control espacio arriba de la funcion para documentar
 function safaste() {
     let opcion = "";
     console.log("Estás de suerte!!!! \nPuedes esquivar este ataque. Deseas proteger tu cordura [C] o tu salud [S]?");
@@ -158,34 +139,27 @@ function safaste() {
  * Función principal del juego
  */
 function main() {
-    let esquivarDanioAcumulado = PROB_ESQUIVAR_DANIO;
-    let ataqueAcumulado = PROB_ATAQUE_TOTAL;
-    let llave = "";
     let ingresoUsuario = "";
-    let intento = 1;
-    console.log("*** Hoy vas a luchar contra los Horrocruxes");
-    //- El estudiante tiene el primer intento donde los horrocruxes no pueden derrotarlo inmediatamente 
-    while (intento != MAX_INTENTOS || todosMuertos != true || llave != LLAVE_FINAL) {
-        llave = generarHorrocrux(horrocruxActual);
-
-        console.log("(muestro caracter faltante para pruebas)", llave);
-        ingresoUsuario = generarDialogo(intento, horrocruxActual);
-        if (ingresoUsuario === llave) {
-            danioAcumulado = danioAcumulado + INCREMENTO_PROB_ATAQUE_TOTAL_HORRO;
-            ingresoOK();
-            horrocruxActual = horrocruxActual + 1;
-            intento = intento + 1;
-            esquivarDanioAcumulado = esquivarDanioAcumulado - DECREMENTO_PROB_ATAQUE;
-            do {
-                ataqueAcumulado = ataqueAcumulado + INCREMENTO_PROB_ATAQUE_TOTAL_HORRO;
-            } while (intento < 1);
-            danioAcumulado = danioAcumulado + INCREMENTO_PROB_ATAQUE_TOTAL_HORRO;
-        } else {
-            intento = ingresoErrado(esquivarDanioAcumulado, danioAcumulado, intento);
-        }
-
-
+    const jugadorStatus = {
+        danioAcumulado: PROB_DANIO_TOTAL_HORRO,
+        esquivarDanioAcumulado: PROB_ESQUIVAR_DANIO,
+        horrocruxActual: 1,
+        intento: 1,
+        todosMuertos: false
     }
-
+   console.log("*** Hoy vas a luchar contra los Horrocruxes");
+    while (jugadorStatus.intento < MAX_INTENTOS || jugadorStatus.todosMuertos == false) {
+        mensaje(jugadorStatus.horrocruxActual);
+        ingresoUsuario = generarDialogo(jugadorStatus.intento);
+        if (ingresoUsuario === llave) {
+            ingresoOK(jugadorStatus);
+            do {
+                ataqueAcumulado = ataqueAcumulado + INCREMENTO_PROB_DANIO_TOTAL_HORRO;
+            } while (jugadorStatus.intento < 1);
+            jugadorStatus.danioAcumulado = jugadorStatus.danioAcumulado + INCREMENTO_PROB_DANIO_TOTAL_HORRO;
+        } else {
+            intento = ingresoErrado(jugadorStatus);
+        }
+    }
 }
 main();
