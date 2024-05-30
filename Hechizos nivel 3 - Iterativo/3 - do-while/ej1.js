@@ -13,19 +13,13 @@ const ANILLO_G = "?G4unt!";
 const COPA_HH = "H3l?ga!";
 const DIADEMA_RR = "?R4vena";
 const NAGINI = "N@9ini?";
-const LLAVE_FINAL = "umba";
 const MAX_INTENTOS = 30;
-const ID_DIARIO_TR = 1;
-const ID_ANILLO_G = 2;
-const ID_COPA_HH = 3;
-const ID_DIADEMA_RR = 4;
 const ID_NAGINI = 5;
 const MENSAJE_DERROTA = "- En el oscuro manto de la derrota, el estudiante enfrentó una verdad devastadora: a pesar de sus esfuerzos incansables, los horrocruxes permanecen intactos, y la sombra del mal se alza triunfante sobre el mundo mágico. Aunque la batalla fue ardua y valiente, el destino ha dictado su veredicto, dejando al estudiante con el amargo sabor de la derrota. Pero incluso en la oscuridad más profunda, la llama de la esperanza aún arde, recordando que la lucha nunca termina y que el mañana siempre guarda la promesa de una nueva oportunidad para la redención y la victoria."
 const MENSAJE_VICTORIA = "- ¡Victoria para el estudiante valiente que, con coraje y determinación, ha destruido todos los horrocruxes! Con cada fragmento de alma oscura eliminado, la luz de la esperanza ha brillado más brillante sobre el mundo mágico. ¡Su sacrificio y valentía han salvado a nuestra comunidad de las sombras de la oscuridad, asegurando un futuro lleno de paz y prosperidad para todas las generaciones venideras!"
 
 let salud = PUNTOS_SALUD_MAX;
 let cordura = PUNTOS_CORDURA_MAX;
-
 let llave = "";
 let ataqueAcumulado = PROB_ATAQUE;
 
@@ -80,8 +74,7 @@ function derrota() {
 /**
  * Muestra el mensaje de victoria sobre los Horrocruxes
  */
-function victoria() {
-    
+function victoria() {    
     console.log(MENSAJE_VICTORIA);    
 }
 /**
